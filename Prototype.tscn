@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://PrototypePlayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://PrototypeEnemy.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 144, 8 )
@@ -33,3 +34,15 @@ shape = SubResource( 2 )
 [node name="PrototypePlayer" parent="." instance=ExtResource( 1 )]
 position = Vector2( 128, 128 )
 move_speed = 95.0
+
+[node name="PrototypeEnemy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 192, 48 )
+
+[node name="PrototypeEnemy2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 32, 80 )
+
+[node name="PrototypeEnemy3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 42, 176 )
+
+[node name="PrototypeEnemy4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 208, 144 )

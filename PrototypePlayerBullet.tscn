@@ -9,12 +9,18 @@ export (float) var angle := 0.0 setget set_angle
 export (float) var move_speed := 250.0 setget set_move_speed
 
 var velocity : Vector2
+var rebounded := false
 
 func _ready():
 	set_angle(angle)
 
 func _physics_process(delta):
-	move_and_collide(velocity * delta)
+	var collision := move_and_collide(velocity * delta)
+	if collision:
+		if rebounded:
+			handle_rebounded_collision(collision)
+		else:
+			handle_regular_collision(collision)
 
 func set_angle(value):
 	angle = value
@@ -24,7 +30,21 @@ func set_angle(value):
 func set_move_speed(value):
 	move_speed = value
 	
-	velocity = Vector2.RIGHT.rotated(angle) * move_speed"
+	velocity = Vector2.RIGHT.rotated(angle) * move_speed
+
+func handle_regular_collision(collision):
+	if collision.collider.has_method(\"take_damage\"):
+		queue_free()
+	else:
+		var reflection = velocity.bounce(collision.normal)
+		set_angle(reflection.angle())
+		set_collision_mask_bit(2, true)
+		rebounded = true
+
+func handle_rebounded_collision(collision):
+	if collision.collider.has_method(\"take_damage\"):
+		collision.collider.take_damage()
+	queue_free()"
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 4.0

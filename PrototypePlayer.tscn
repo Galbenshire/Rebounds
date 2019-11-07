@@ -13,7 +13,7 @@ const BULLET := preload(\"res://PrototypePlayerBullet.tscn\")
 export (float) var move_speed := 50.0
 
 var input_direction : Vector2
-var last_mouse_position
+var last_mouse_position : Vector2
 
 func _unhandled_input(event):
 	if event is InputEventMouse:
@@ -33,7 +33,13 @@ func shoot():
 	var bullet = BULLET.instance()
 	bullet.angle = SpritePivot.rotation
 	bullet.global_position = BulletOrigin.global_position
-	get_parent().add_child(bullet)"
+	get_parent().add_child(bullet)
+
+func take_damage():
+	print(\"Oof. The player just took damage.\")
+	SpritePivot.modulate = Color.red
+	yield(get_tree().create_timer(0.15), \"timeout\")
+	SpritePivot.modulate = Color.white"
 
 [sub_resource type="CircleShape2D" id=2]
 
