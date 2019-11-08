@@ -8,7 +8,12 @@ Depending on which is used, the code will adjust accordingly.
 extends KinematicBody2D
 
 onready var PlayerSprite : Sprite = $Sprite
+onready var BulletOrigin : Position2D = $Sprite/BulletOrigin
+onready var Hitbox : Area2D = $Hitbox/Collision
+onready var BlinkAnimation : AnimationPlayer = $BlinkAnimation
+onready var HurtTimer : Timer = $HurtTimer
 
+const BULLET := preload("res://entities/player/bullet/PlayerBullet.tscn")
 const STICK_DEADZONE := 0.3
 
 export (float) var move_speed := 90.0
@@ -20,6 +25,9 @@ func _unhandled_input(event : InputEvent) -> void:
 		_mouse_mode = false
 	elif !_mouse_mode and _is_keyboard_used(event):
 		_mouse_mode = true
+	
+	if event.is_action_pressed("player_shoot"):
+		_player_shoot()
 
 func _physics_process(delta : float) -> void:
 	_player_movement()
@@ -60,3 +68,27 @@ func _player_aiming() -> void:
 		if right_stick_direction.length() > STICK_DEADZONE:
 			right_stick_direction = right_stick_direction.normalized()
 			PlayerSprite.rotation = right_stick_direction.angle()
+
+func _player_shoot() -> void:
+	var bullet = BULLET.instance()
+	bullet.angle = PlayerSprite.rotation
+	bullet.global_position = BulletOrigin.global_position
+	get_parent().add_child(bullet)
+
+func _take_damage() -> void:
+	if BlinkAnimation.is_playing():
+		return
+	
+	print("Ouch")
+	BlinkAnimation.play("blink")
+	HurtTimer.start()
+
+func _on_Hitbox_body_entered(body : PhysicsBody2D) -> void:
+	if body.is_in_group("player_projectile"):
+		if body.rebounded:
+			_take_damage()
+			body.queue_free()
+
+func _on_HurtTimer_timeout() -> void:
+	BlinkAnimation.stop()
+	PlayerSprite.visible = true
