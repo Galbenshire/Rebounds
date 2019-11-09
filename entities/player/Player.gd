@@ -34,6 +34,10 @@ func _physics_process(delta : float) -> void:
 	_player_movement()
 	_player_aiming()
 
+func set_control_state(value : bool) -> void:
+	set_physics_process(value)
+	set_process_unhandled_input(value)
+
 func set_camera_bounds(bounds : Rect2) -> void:
 	$Camera.limit_left = bounds.position.x
 	$Camera.limit_top = bounds.position.y

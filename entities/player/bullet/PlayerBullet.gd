@@ -35,3 +35,6 @@ func set_angle(value : float) -> void:
 
 func _update_velocity() -> void:
 	_velocity = Vector2(cos(angle), sin(angle)) * move_speed
+
+func _on_VisibilityNotifier_screen_exited() -> void:
+	queue_free()

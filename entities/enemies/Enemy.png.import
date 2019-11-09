@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PlaceholderTiles.png-e4cae8083c6a3b69d217fb659e5df9d7.stex"
+path="res://.import/Enemy.png-cac8dcc6bd62db67df1d0e2666d143d8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/PlaceholderTiles.png"
-dest_files=[ "res://.import/PlaceholderTiles.png-e4cae8083c6a3b69d217fb659e5df9d7.stex" ]
+source_file="res://entities/enemies/Enemy.png"
+dest_files=[ "res://.import/Enemy.png-cac8dcc6bd62db67df1d0e2666d143d8.stex" ]
 
 [params]
 
