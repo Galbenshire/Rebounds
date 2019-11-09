@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PrototypeEntity.png-f5dcb5023c2de897eb225ec3929fc42d.stex"
+path="res://.import/TestTiles.png-032549a0ca2214ac9d7950ffaf52ba22.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PrototypeEntity.png"
-dest_files=[ "res://.import/PrototypeEntity.png-f5dcb5023c2de897eb225ec3929fc42d.stex" ]
+source_file="res://levels/assets/TestTiles.png"
+dest_files=[ "res://.import/TestTiles.png-032549a0ca2214ac9d7950ffaf52ba22.stex" ]
 
 [params]
 
