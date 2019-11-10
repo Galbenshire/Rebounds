@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://levels/assets/BaseLevel.gd" type="Script" id=1]
 [ext_resource path="res://levels/assets/FinishPoint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gui/hud/HUD.tscn" type="PackedScene" id=4]
 
 [node name="BaseLevel" type="Node"]
 script = ExtResource( 1 )
@@ -25,5 +26,6 @@ position = Vector2( 32, 0 )
 
 [node name="Player" parent="Playfield" instance=ExtResource( 3 )]
 
-[node name="HUD" type="CanvasLayer" parent="."]
-layer = -1
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+layer = 1
+[connection signal="player_reached_end" from="Playfield/FinishPoint" to="." method="_on_FinishPoint_player_reached_end"]
