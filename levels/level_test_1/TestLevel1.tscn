@@ -4,7 +4,7 @@
 [ext_resource path="res://levels/assets/TestTileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://entities/enemies/BaseEnemy.tscn" type="PackedScene" id=3]
 
-[node name="TestLevel1" instance=ExtResource( 1 )]
+[node name="TestLevel1" index="0" instance=ExtResource( 1 )]
 
 [node name="MainTileMap" parent="Playfield/NavigationTiles" index="0"]
 tile_set = ExtResource( 2 )
