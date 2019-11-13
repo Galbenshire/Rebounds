@@ -97,6 +97,10 @@ func _on_Hitbox_body_entered(body : PhysicsBody2D) -> void:
 			_take_damage()
 			body.queue_free()
 
+func _on_Hitbox_area_entered(area : Area2D) -> void:
+	_take_damage()
+	area.queue_free()
+	
 # Stop invincibility
 func _on_HurtTimer_timeout() -> void:
 	BlinkAnimation.stop()
