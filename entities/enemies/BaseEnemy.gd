@@ -4,18 +4,23 @@ signal nav_path_requested(self_ref)
 
 onready var AI : StateMachine = $AI
 onready var EnemySprite : Sprite = $Sprite
+onready var HurtTimer : Timer = $HurtTimer
 onready var State : Label = $State
+onready var PathVisual : Line2D = $Debug/PathVisual
 
 const RAY_MASK := (1 << 0) + (1 << 2) #In collision_mask terms, this means detect 'geometry' & 'player'
 
+export (int) var starting_health : int = 5
 export (String) var starting_state : String
 
+var health : int
 var path : PoolVector2Array setget set_path
 
 var _target : KinematicBody2D
 var _original_colors : Color
 
 func _ready() -> void:
+	health = starting_health
 	_original_colors = EnemySprite.modulate
 	
 	AI.add_states(_build_states_dictionary())
@@ -26,6 +31,8 @@ func _process(delta : float) -> void:
 
 func set_path(new_path : PoolVector2Array) -> void:
 	path = new_path
+	PathVisual.points = path
+	path.remove(0)
 
 func get_target_location() -> Vector2:
 	return position if !_target else _target.position
@@ -42,13 +49,19 @@ func is_player_in_sights() -> bool:
 	
 	return false
 
+func remove_front_point() -> void:
+	path.remove(0)
+
 func _build_states_dictionary() -> Dictionary:
 	return {}
 
 func _take_damage() -> void:
-	EnemySprite.modulate = Color.yellow
-	yield(get_tree().create_timer(0.15), "timeout")
-	EnemySprite.modulate = _original_colors
+	health -= 1
+	if health <= 0:
+		queue_free()
+	else:
+		EnemySprite.modulate = Color.yellow
+		HurtTimer.start()
 
 func _on_body_entered(body : PhysicsBody2D) -> void:
 	if body.is_in_group("player_projectile"):
@@ -59,3 +72,6 @@ func _on_body_entered(body : PhysicsBody2D) -> void:
 
 func _on_PlayerDetection_body_update(body : PhysicsBody2D, entered : bool) -> void:
 	_target = body if entered else null
+
+func _on_HurtTimer_timeout() -> void:
+	EnemySprite.modulate = _original_colors

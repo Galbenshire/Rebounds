@@ -35,6 +35,11 @@ collision_mask = 4
 [node name="Collision" type="CollisionShape2D" parent="PlayerDetection"]
 shape = SubResource( 2 )
 
+[node name="HurtTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.15
+one_shot = true
+
 [node name="State" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -47,3 +52,4 @@ margin_bottom = 7.0
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_PlayerDetection_body_update" binds= [ true ]]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_PlayerDetection_body_update" binds= [ false ]]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_HurtTimer_timeout"]

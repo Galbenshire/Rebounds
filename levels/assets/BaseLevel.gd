@@ -51,7 +51,7 @@ func _connect_enemies_to_navigation() -> void:
 
 func _give_enemy_nav_path(enemy : Area2D) -> void:
 	print(enemy, " requested a nav path")
-	var new_path = $Playfield/NavigationTiles.get_simple_path(enemy.position, enemy.get_target_location())
+	var new_path = $Playfield/NavigationTiles.get_simple_path(enemy.position, enemy.get_target_location(), true)
 	enemy.path = new_path
 
 func _on_FinishPoint_player_reached_end() -> void:

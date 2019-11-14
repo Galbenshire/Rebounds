@@ -42,7 +42,7 @@ and you'll usually only have one State Machine.
 States however, are References, to make them more lightweight.
 """
 
-var states : Dictionary
+var states : Dictionary = {}
 var current_state : String setget set_current_state
 
 var _current_state_internal : State
