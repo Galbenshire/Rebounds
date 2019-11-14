@@ -26,6 +26,7 @@ func _start_level() -> void:
 	Player.set_control_state(true)
 
 func _end_level() -> void:
+	get_tree().call_group("enemy", "queue_free")
 	Player.set_control_state(false)
 	HUD.do_level_clear_sequence()
 	yield(HUD, "sequence_finished")

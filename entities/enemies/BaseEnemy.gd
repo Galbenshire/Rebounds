@@ -6,7 +6,6 @@ onready var AI : StateMachine = $AI
 onready var EnemySprite : Sprite = $Sprite
 onready var HurtTimer : Timer = $HurtTimer
 onready var State : Label = $State
-onready var PathVisual : Line2D = $Debug/PathVisual
 
 const RAY_MASK := (1 << 0) + (1 << 2) #In collision_mask terms, this means detect 'geometry' & 'player'
 
@@ -31,7 +30,6 @@ func _process(delta : float) -> void:
 
 func set_path(new_path : PoolVector2Array) -> void:
 	path = new_path
-	PathVisual.points = path
 	path.remove(0)
 
 func get_target_location() -> Vector2:
@@ -48,6 +46,12 @@ func is_player_in_sights() -> bool:
 		return ray_result.collider.is_in_group("player")
 	
 	return false
+
+func distance_to_target() -> float:
+	if !_target:
+		return 0.0
+	
+	return position.distance_to(_target.position)
 
 func remove_front_point() -> void:
 	path.remove(0)

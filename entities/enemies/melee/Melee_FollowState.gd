@@ -13,6 +13,10 @@ func physics_process(delta : float) -> void:
 	if target.is_player_in_sights():
 		_run_update_timer(delta)
 	
+	if target.distance_to_target() < 32:
+		emit_signal("transition_call_made", "attack")
+		return
+	
 	if target.path.size() > 0:
 		_move_along_path(delta)
 	else:
