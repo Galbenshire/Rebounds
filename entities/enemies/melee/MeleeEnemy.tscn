@@ -56,6 +56,9 @@ script = ExtResource( 2 )
 starting_health = 3
 starting_state = "idle"
 
+[node name="Sprite" parent="." index="1"]
+modulate = Color( 0, 0.309804, 0.74902, 1 )
+
 [node name="MeleeHitbox" type="Area2D" parent="Sprite" index="0"]
 editor/display_folded = true
 collision_layer = 0
@@ -82,5 +85,4 @@ anims/attack = SubResource( 2 )
 [node name="PathVisual" type="Line2D" parent="Debug" index="0"]
 visible = false
 width = 2.0
-texture_mode = 1067450368
 [connection signal="body_entered" from="Sprite/MeleeHitbox" to="." method="_on_MeleeHitbox_body_entered"]

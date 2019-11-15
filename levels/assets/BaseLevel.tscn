@@ -8,6 +8,15 @@
 [node name="BaseLevel" type="Node"]
 script = ExtResource( 1 )
 
+[node name="Background" type="CanvasLayer" parent="."]
+editor/display_folded = true
+layer = -3
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="Playfield" type="Node2D" parent="."]
 
 [node name="NavigationTiles" type="Navigation2D" parent="Playfield"]

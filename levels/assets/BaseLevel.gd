@@ -27,12 +27,13 @@ func _start_level() -> void:
 
 func _end_level() -> void:
 	get_tree().call_group("enemy", "queue_free")
+	get_tree().call_group("enemy_projectile", "queue_free")
 	Player.set_control_state(false)
 	HUD.do_level_clear_sequence()
 	yield(HUD, "sequence_finished")
 	
 	#Do this for now
-	get_tree().reload_current_scene()
+	get_tree().change_scene("res://menu/MainMenu.tscn")
 
 func _set_player_camera_bounds() -> void:
 	var total_tilemap_rect = _get_total_tilemap_size()

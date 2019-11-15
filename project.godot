@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Rebounds"
-run/main_scene="res://levels/level_test_1/TestLevel1.tscn"
+run/main_scene="res://menu/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [display]

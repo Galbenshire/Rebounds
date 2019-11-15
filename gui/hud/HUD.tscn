@@ -33,3 +33,13 @@ margin_bottom = 7.0
 text = "LEVEL CLEAR"
 align = 1
 valign = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 256.0
+margin_bottom = 32.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="ColorRect"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "HUD - Nothing yet"

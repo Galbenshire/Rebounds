@@ -6,7 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 4.0
 
-[node name="EnemyBullet" type="Area2D"]
+[node name="EnemyBullet" type="Area2D" groups=[
+"enemy_projectile",
+]]
 collision_layer = 16
 script = ExtResource( 1 )
 
