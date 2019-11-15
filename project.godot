@@ -8,15 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "State",
+"language": "GDScript",
+"path": "res://scripts/State.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://scripts/StateMachine.gd"
+} ]
 _global_script_class_icons={
-
+"State": "",
+"StateMachine": ""
 }
 
 [application]
 
 config/name="Rebounds"
-run/main_scene="res://levels/level_test_1/TestLevel1.tscn"
+run/main_scene="res://menu/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [display]

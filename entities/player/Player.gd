@@ -44,6 +44,14 @@ func set_camera_bounds(bounds : Rect2) -> void:
 	$Camera.limit_right = bounds.end.x
 	$Camera.limit_bottom = bounds.end.y
 
+func take_damage() -> void:
+	if BlinkAnimation.is_playing():
+		return
+	
+	# Start hurt invincibility
+	BlinkAnimation.play("blink")
+	HurtTimer.start()
+
 func _is_gamepad_used(event : InputEvent) -> bool:
 	if event is InputEventJoypadButton:
 		return true
@@ -83,20 +91,16 @@ func _player_shoot() -> void:
 	bullet.global_position = BulletOrigin.global_position
 	get_parent().add_child(bullet)
 
-func _take_damage() -> void:
-	if BlinkAnimation.is_playing():
-		return
-	
-	# Start hurt invincibility
-	BlinkAnimation.play("blink")
-	HurtTimer.start()
-
 func _on_Hitbox_body_entered(body : PhysicsBody2D) -> void:
 	if body.is_in_group("player_projectile"):
 		if body.rebounded:
-			_take_damage()
+			take_damage()
 			body.queue_free()
 
+func _on_Hitbox_area_entered(area : Area2D) -> void:
+	take_damage()
+	area.queue_free()
+	
 # Stop invincibility
 func _on_HurtTimer_timeout() -> void:
 	BlinkAnimation.stop()

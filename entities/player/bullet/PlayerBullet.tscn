@@ -9,6 +9,7 @@ radius = 4.0
 [node name="PlayerBullet" type="KinematicBody2D" groups=[
 "player_projectile",
 ]]
+editor/display_folded = true
 collision_layer = 16
 script = ExtResource( 1 )
 __meta__ = {

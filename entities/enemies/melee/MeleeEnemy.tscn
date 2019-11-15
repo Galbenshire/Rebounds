@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://entities/enemies/BaseEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/enemies/melee/MeleeEnemy.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "attack"
+length = 1.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/MeleeHitbox/Collision:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.75, 0.85 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/MeleeSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.75, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "aim_at_target"
+} ]
+}
+
+[node name="MeleeEnemy" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+starting_health = 3
+starting_state = "idle"
+
+[node name="Sprite" parent="." index="1"]
+modulate = Color( 0, 0.309804, 0.74902, 1 )
+
+[node name="MeleeHitbox" type="Area2D" parent="Sprite" index="0"]
+editor/display_folded = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape2D" parent="Sprite/MeleeHitbox" index="0"]
+position = Vector2( 16, 0 )
+rotation = 1.5708
+shape = SubResource( 1 )
+disabled = true
+
+[node name="MeleeSprite" type="Sprite" parent="Sprite" index="1"]
+visible = false
+position = Vector2( 16, 0 )
+scale = Vector2( 0.5, 0.21875 )
+texture = ExtResource( 3 )
+
+[node name="AttackAnimations" type="AnimationPlayer" parent="." index="6"]
+playback_process_mode = 0
+anims/attack = SubResource( 2 )
+
+[node name="Debug" type="Node" parent="." index="7"]
+
+[node name="PathVisual" type="Line2D" parent="Debug" index="0"]
+visible = false
+width = 2.0
+[connection signal="body_entered" from="Sprite/MeleeHitbox" to="." method="_on_MeleeHitbox_body_entered"]
