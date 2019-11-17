@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "PlayerData",
+"language": "GDScript",
+"path": "res://scriptable_objects/PlayerData.gd"
+}, {
 "base": "Reference",
 "class": "State",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"PlayerData": "",
 "State": "",
 "StateMachine": ""
 }

@@ -7,11 +7,15 @@ Depending on which is used, the code will adjust accordingly.
 """
 extends KinematicBody2D
 
+signal died()
+
 onready var PlayerSprite : Sprite = $Sprite
 onready var BulletOrigin : Position2D = $Sprite/BulletOrigin
 onready var Hitbox : Area2D = $Hitbox/Collision
 onready var BlinkAnimation : AnimationPlayer = $BlinkAnimation
 onready var HurtTimer : Timer = $HurtTimer
+
+const PlayerData := preload("res://scriptable_objects/PlayerData.tres")
 
 const BULLET := preload("res://entities/player/bullet/PlayerBullet.tscn")
 const STICK_DEADZONE := 0.3
@@ -20,6 +24,9 @@ const MAX_BULLETS_ON_SCREEN = 3
 export (float) var move_speed := 90.0
 
 var _mouse_mode : bool = false
+
+func _ready() -> void:
+	PlayerData.reset_life()
 
 func _unhandled_input(event : InputEvent) -> void:
 	if _mouse_mode and _is_gamepad_used(event):
@@ -48,9 +55,17 @@ func take_damage() -> void:
 	if BlinkAnimation.is_playing():
 		return
 	
+	PlayerData.life -= 1
+	if PlayerData.life <= 0:
+		hide()
+		Hitbox.set_deferred("disabled", true)
+		$Collider.set_deferred("disabled", true)
+		set_control_state(false)
+		emit_signal("died")
+	else:
 	# Start hurt invincibility
-	BlinkAnimation.play("blink")
-	HurtTimer.start()
+		BlinkAnimation.play("blink")
+		HurtTimer.start()
 
 func _is_gamepad_used(event : InputEvent) -> bool:
 	if event is InputEventJoypadButton:

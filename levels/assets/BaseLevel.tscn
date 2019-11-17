@@ -38,3 +38,4 @@ position = Vector2( 32, 0 )
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 layer = 1
 [connection signal="player_reached_end" from="Playfield/FinishPoint" to="." method="_on_FinishPoint_player_reached_end"]
+[connection signal="died" from="Playfield/Player" to="." method="_on_Player_died"]

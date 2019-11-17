@@ -35,6 +35,13 @@ func _end_level() -> void:
 	#Do this for now
 	get_tree().change_scene("res://menu/MainMenu.tscn")
 
+func _game_over() -> void:
+	HUD.do_game_over_sequence()
+	yield(HUD, "sequence_finished")
+	
+	#Do this for now
+	get_tree().change_scene("res://menu/MainMenu.tscn")
+
 func _set_player_camera_bounds() -> void:
 	var total_tilemap_rect = _get_total_tilemap_size()
 	Player.set_camera_bounds(total_tilemap_rect)
@@ -58,3 +65,6 @@ func _give_enemy_nav_path(enemy : Area2D) -> void:
 
 func _on_FinishPoint_player_reached_end() -> void:
 	_end_level()
+
+func _on_Player_died() -> void:
+	_game_over()
