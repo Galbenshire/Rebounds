@@ -7,10 +7,14 @@ onready var EnemySprite : Sprite = $Sprite
 onready var HurtTimer : Timer = $HurtTimer
 onready var State : Label = $State
 
+const PlayerData := preload("res://scriptable_objects/PlayerData.tres")
+
+const EXPLOSION := preload("res://entities/explosion/Explosion.tscn")
 const RAY_MASK := (1 << 0) + (1 << 2) #In collision_mask terms, this means detect 'geometry' & 'player'
 
 export (int) var starting_health : int = 5
 export (String) var starting_state : String
+export (int) var score_value : int = 100
 
 var health : int
 var path : PoolVector2Array setget set_path
@@ -62,10 +66,18 @@ func _build_states_dictionary() -> Dictionary:
 func _take_damage() -> void:
 	health -= 1
 	if health <= 0:
-		queue_free()
+		_die()
 	else:
 		EnemySprite.modulate = Color.yellow
 		HurtTimer.start()
+
+func _die() -> void:
+	var explosion = EXPLOSION.instance()
+	explosion.global_position = global_position
+	get_parent().add_child(explosion)
+	
+	PlayerData.score += score_value
+	queue_free()
 
 func _on_body_entered(body : PhysicsBody2D) -> void:
 	if body.is_in_group("player_projectile"):

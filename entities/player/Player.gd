@@ -18,6 +18,7 @@ onready var HurtTimer : Timer = $HurtTimer
 const PlayerData := preload("res://scriptable_objects/PlayerData.tres")
 
 const BULLET := preload("res://entities/player/bullet/PlayerBullet.tscn")
+const EXPLOSION := preload("res://entities/explosion/Explosion.tscn")
 const STICK_DEADZONE := 0.3
 const MAX_BULLETS_ON_SCREEN = 3
 
@@ -57,15 +58,22 @@ func take_damage() -> void:
 	
 	PlayerData.life -= 1
 	if PlayerData.life <= 0:
-		hide()
-		Hitbox.set_deferred("disabled", true)
-		$Collider.set_deferred("disabled", true)
-		set_control_state(false)
-		emit_signal("died")
+		die()
 	else:
 	# Start hurt invincibility
 		BlinkAnimation.play("blink")
 		HurtTimer.start()
+
+func die() -> void:
+	var explosion = EXPLOSION.instance()
+	explosion.global_position = global_position
+	get_parent().add_child(explosion)
+	
+	hide()
+	Hitbox.set_deferred("disabled", true)
+	$Collider.set_deferred("disabled", true)
+	set_control_state(false)
+	emit_signal("died")
 
 func _is_gamepad_used(event : InputEvent) -> bool:
 	if event is InputEventJoypadButton:
