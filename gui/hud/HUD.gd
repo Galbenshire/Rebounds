@@ -9,23 +9,23 @@ func _ready() -> void:
 	update_banner()
 
 func do_ready_sequence() -> void:
-	$Ready.show()
+	$Wrapper/Ready.show()
 	yield(get_tree().create_timer(2.0), "timeout")
-	$Ready.hide()
+	$Wrapper/Ready.hide()
 	emit_signal("sequence_finished")
 
 func do_level_clear_sequence() -> void:
-	$LevelClear.show()
+	$Wrapper/LevelClear.show()
 	yield(get_tree().create_timer(2.0), "timeout")
-	$LevelClear.hide()
+	$Wrapper/LevelClear.hide()
 	emit_signal("sequence_finished")
 
 func do_game_over_sequence() -> void:
-	$GameOver.show()
+	$Wrapper/GameOver.show()
 	yield(get_tree().create_timer(2.0), "timeout")
-	$GameOver.hide()
+	$Wrapper/GameOver.hide()
 	emit_signal("sequence_finished")
 
 func update_banner() -> void:
-	$Banner/Life.text = str("Life - %d" % PlayerData.life)
-	$Banner/Score.text = str("Score - %d" % PlayerData.score)
+	$Wrapper/Banner/Life.text = str("Life - %d" % PlayerData.life)
+	$Wrapper/Banner/Score.text = str("Score - %d" % PlayerData.score)
