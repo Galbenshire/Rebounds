@@ -72,12 +72,23 @@ func _take_damage() -> void:
 		HurtTimer.start()
 
 func _die() -> void:
-	var explosion = EXPLOSION.instance()
-	explosion.global_position = global_position
-	get_parent().add_child(explosion)
+	_make_explosion()
+	_pop_score()
 	
 	PlayerData.score += score_value
 	queue_free()
+
+func _make_explosion() -> void:
+	var explosion = EXPLOSION.instance()
+	explosion.global_position = global_position
+	get_parent().add_child(explosion)
+
+func _pop_score() -> void:
+	var score_pop = preload("res://entities/score_pop/ScorePop.tscn")
+	var sp = score_pop.instance()
+	sp.set_score(score_value)
+	sp.global_position = global_position
+	get_parent().add_child(sp)
 
 func _on_body_entered(body : PhysicsBody2D) -> void:
 	if body.is_in_group("player_projectile"):

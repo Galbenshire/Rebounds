@@ -12,6 +12,7 @@ func shoot() -> void:
 	var bullet = BULLET.instance()
 	bullet.angle = EnemySprite.rotation
 	bullet.global_position = BulletOrigin.global_position
+	bullet.modulate = Color.red
 	get_parent().add_child(bullet)
 
 func _build_states_dictionary() -> Dictionary:
