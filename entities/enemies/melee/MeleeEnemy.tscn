@@ -51,10 +51,11 @@ tracks/2/keys = {
 } ]
 }
 
-[node name="MeleeEnemy" instance=ExtResource( 1 )]
+[node name="MeleeEnemy" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 starting_health = 3
 starting_state = "idle"
+score_value = 150
 
 [node name="Sprite" parent="." index="1"]
 modulate = Color( 0, 0.309804, 0.74902, 1 )
@@ -85,4 +86,5 @@ anims/attack = SubResource( 2 )
 [node name="PathVisual" type="Line2D" parent="Debug" index="0"]
 visible = false
 width = 2.0
+texture_mode = 1817190437
 [connection signal="body_entered" from="Sprite/MeleeHitbox" to="." method="_on_MeleeHitbox_body_entered"]
