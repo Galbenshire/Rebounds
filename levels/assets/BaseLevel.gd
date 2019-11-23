@@ -10,6 +10,7 @@ NOTES:
 
 onready var Player : KinematicBody2D = $Playfield/Player
 onready var HUD : CanvasLayer = $HUD
+onready var PauseMenu : CanvasLayer = $PauseMenu
 
 func _ready() -> void:
 	_setup()
@@ -23,9 +24,11 @@ func _setup() -> void:
 func _start_level() -> void:
 	HUD.do_ready_sequence()
 	yield(HUD, "sequence_finished")
+	PauseMenu.can_pause = true
 	Player.set_control_state(true)
 
 func _end_level() -> void:
+	PauseMenu.can_pause = false
 	get_tree().call_group("enemy", "queue_free")
 	get_tree().call_group("enemy_projectile", "queue_free")
 	Player.set_control_state(false)
@@ -33,13 +36,17 @@ func _end_level() -> void:
 	yield(HUD, "sequence_finished")
 	
 	#Do this for now
-	get_tree().change_scene("res://menu/MainMenu.tscn")
+	_return_to_menu()
 
 func _game_over() -> void:
+	PauseMenu.can_pause = false
 	HUD.do_game_over_sequence()
 	yield(HUD, "sequence_finished")
 	
 	#Do this for now
+	_return_to_menu()
+
+func _return_to_menu() -> void:
 	get_tree().change_scene("res://menu/MainMenu.tscn")
 
 func _set_player_camera_bounds() -> void:
