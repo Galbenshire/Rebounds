@@ -47,7 +47,7 @@ func _game_over() -> void:
 	_return_to_menu()
 
 func _return_to_menu() -> void:
-	get_tree().change_scene("res://menu/MainMenu.tscn")
+	get_tree().change_scene("res://menu/main_menu/MainMenu.tscn")
 
 func _set_player_camera_bounds() -> void:
 	var total_tilemap_rect = _get_total_tilemap_size()

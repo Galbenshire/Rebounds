@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://gui/MainTheme.tres" type="Theme" id=1]
+[ext_resource path="res://menu/main_menu/level_selection/LevelSelection_Normal.tres" type="StyleBox" id=2]
+[ext_resource path="res://menu/main_menu/level_selection/LevelSelection.gd" type="Script" id=3]
+
+[node name="LevelSelection" type="Panel"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+focus_mode = 2
+theme = ExtResource( 1 )
+custom_styles/panel = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="LVL" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -12.0
+margin_top = 4.0
+margin_right = 12.0
+margin_bottom = 12.0
+text = "LVL"
+align = 1
+valign = 1
+
+[node name="Number" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -12.0
+margin_top = -12.0
+margin_right = 12.0
+margin_bottom = -4.0
+text = "1"
+align = 1
+valign = 1
+[connection signal="focus_entered" from="." to="." method="_on_focus_updated" binds= [ true ]]
+[connection signal="focus_exited" from="." to="." method="_on_focus_updated" binds= [ false ]]
+[connection signal="mouse_entered" from="." to="." method="grab_focus"]

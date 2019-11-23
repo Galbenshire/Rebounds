@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://gui/MainTheme.tres" type="Theme" id=1]
+[ext_resource path="res://menu/main_menu/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://menu/main_menu/level_selection/LevelSelection.tscn" type="PackedScene" id=3]
+[ext_resource path="res://levels/level_test_2/TestLevel2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/level_test_1/TestLevel1.tscn" type="PackedScene" id=5]
+
+[node name="MainMenu" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 2 )
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -72.0
+margin_top = 16.0
+margin_bottom = 24.0
+rect_scale = Vector2( 2, 2 )
+text = "REBOUNDS"
+align = 1
+
+[node name="SelectLevel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -48.0
+margin_top = 64.0
+margin_right = 48.0
+margin_bottom = 72.0
+text = "SELECT LEVEL"
+align = 1
+
+[node name="LevelGrid" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -24.0
+margin_right = 80.0
+margin_bottom = 88.0
+columns = 4
+
+[node name="LevelSelection" parent="LevelGrid" instance=ExtResource( 3 )]
+level_go_to = ExtResource( 4 )
+
+[node name="LevelSelection2" parent="LevelGrid" instance=ExtResource( 3 )]
+margin_left = 36.0
+margin_right = 68.0
+level_go_to = ExtResource( 5 )

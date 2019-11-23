@@ -4,7 +4,8 @@
 [ext_resource path="res://levels/assets/finish_point/FinishPoint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://gui/hud/HUD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://gui/pause_menu/PauseMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://menu/pause_menu/PauseMenu.tscn" type="PackedScene" id=5]
+
 
 [node name="BaseLevel" type="Node"]
 script = ExtResource( 1 )
