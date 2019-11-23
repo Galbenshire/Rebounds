@@ -30,13 +30,14 @@ func _ready() -> void:
 	PlayerData.reset_life()
 
 func _unhandled_input(event : InputEvent) -> void:
+	if event.is_action_pressed("player_shoot"):
+		if !(!_mouse_mode and event is InputEventMouseButton):
+			_player_shoot()
+	
 	if _mouse_mode and _is_gamepad_used(event):
 		_mouse_mode = false
 	elif !_mouse_mode and _is_keyboard_used(event):
 		_mouse_mode = true
-	
-	if event.is_action_pressed("player_shoot"):
-		_player_shoot()
 
 func _physics_process(delta : float) -> void:
 	_player_movement()
