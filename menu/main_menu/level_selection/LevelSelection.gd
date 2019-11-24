@@ -17,6 +17,7 @@ func _input(event : InputEvent) -> void:
 	
 	if event.is_action_pressed("ui_accept"):
 		emit_signal("level_selected")
+		accept_event()
 
 func _gui_input(event : InputEvent) -> void:
 	if !event is InputEventMouseButton:
@@ -24,6 +25,7 @@ func _gui_input(event : InputEvent) -> void:
 	
 	if event.button_index == BUTTON_LEFT and event.is_pressed():
 		emit_signal("level_selected")
+		accept_event()
 
 func set_level_number(value : int) -> void:
 	level_number = value

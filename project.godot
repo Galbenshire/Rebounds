@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Rebounds"
-run/main_scene="res://menu/main_menu/MainMenu.tscn"
+run/main_scene="res://menu/splash_screen/SplashScreen.tscn"
 config/icon="res://icon.png"
 
 [display]
