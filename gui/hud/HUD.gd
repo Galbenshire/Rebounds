@@ -6,9 +6,9 @@ func _ready() -> void:
 	pass
 
 func do_ready_sequence() -> void:
-	$Wrapper/Ready.show()
-	yield(get_tree().create_timer(2.0), "timeout")
-	$Wrapper/Ready.hide()
+	$Wrapper/ReadyUI.start()
+	yield($Wrapper/ReadyUI, "finished")
+	$Wrapper/ReadyUI.hide()
 	emit_signal("sequence_finished")
 
 func do_level_clear_sequence() -> void:
