@@ -5,7 +5,7 @@
 [ext_resource path="res://levels/assets/key_barrier/KeyBarrier.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/key/Key.tscn" type="PackedScene" id=4]
 
-[node name="BaseLevel" index="0" instance=ExtResource( 1 )]
+[node name="BaseLevel" instance=ExtResource( 1 )]
 
 [node name="MainTileMap" parent="Playfield/NavigationTiles" index="0"]
 tile_set = ExtResource( 2 )

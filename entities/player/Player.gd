@@ -27,7 +27,7 @@ export (float) var move_speed := 90.0
 var _mouse_mode : bool = false
 
 func _ready() -> void:
-	PlayerData.reset_life()
+	PlayerData.reset()
 
 func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("player_shoot"):
@@ -42,6 +42,7 @@ func _unhandled_input(event : InputEvent) -> void:
 func _physics_process(delta : float) -> void:
 	_player_movement()
 	_player_aiming()
+	PlayerData.time_in_level += delta
 
 func set_control_state(value : bool) -> void:
 	set_physics_process(value)
@@ -57,6 +58,7 @@ func take_damage() -> void:
 	if BlinkAnimation.is_playing():
 		return
 	
+	PlayerData.was_hit = true
 	PlayerData.life -= 1
 	if PlayerData.life <= 0:
 		die()
@@ -114,6 +116,8 @@ func _player_shoot() -> void:
 	bullet.angle = PlayerSprite.rotation
 	bullet.global_position = BulletOrigin.global_position
 	get_parent().add_child(bullet)
+	
+	PlayerData.bullets_shot += 1
 
 func _on_Hitbox_body_entered(body : PhysicsBody2D) -> void:
 	if body.is_in_group("player_projectile"):
