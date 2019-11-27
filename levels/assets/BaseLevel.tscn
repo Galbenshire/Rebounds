@@ -1,20 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://levels/assets/BaseLevel.gd" type="Script" id=1]
 [ext_resource path="res://levels/assets/finish_point/FinishPoint.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://gui/hud/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://menu/pause_menu/PauseMenu.tscn" type="PackedScene" id=5]
+
 
 [node name="BaseLevel" type="Node"]
 script = ExtResource( 1 )
 
 [node name="Background" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = -3
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
 [node name="Playfield" type="Node2D" parent="."]
@@ -37,5 +39,9 @@ position = Vector2( 32, 0 )
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 layer = 1
+
+[node name="PauseMenu" parent="." instance=ExtResource( 5 )]
+layer = 2
 [connection signal="player_reached_end" from="Playfield/FinishPoint" to="." method="_on_FinishPoint_player_reached_end"]
 [connection signal="died" from="Playfield/Player" to="." method="_on_Player_died"]
+[connection signal="game_quit_requested" from="PauseMenu" to="." method="_return_to_menu"]
