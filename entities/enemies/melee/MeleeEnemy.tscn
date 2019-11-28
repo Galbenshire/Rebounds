@@ -2,11 +2,11 @@
 
 [ext_resource path="res://entities/enemies/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/enemies/melee/MeleeEnemy.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://entities/enemies/melee/MeleeWeapon.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
-height = 16.0
+radius = 4.0
+height = 24.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "attack"
@@ -58,10 +58,10 @@ starting_state = "idle"
 score_value = 150
 
 [node name="Sprite" parent="." index="1"]
-modulate = Color( 0, 0.309804, 0.74902, 1 )
+modulate = Color( 1, 1, 1, 1 )
+self_modulate = Color( 0, 0.309804, 0.74902, 1 )
 
 [node name="MeleeHitbox" type="Area2D" parent="Sprite" index="0"]
-editor/display_folded = true
 collision_layer = 0
 collision_mask = 4
 
@@ -74,7 +74,6 @@ disabled = true
 [node name="MeleeSprite" type="Sprite" parent="Sprite" index="1"]
 visible = false
 position = Vector2( 16, 0 )
-scale = Vector2( 0.5, 0.21875 )
 texture = ExtResource( 3 )
 
 [node name="AttackAnimations" type="AnimationPlayer" parent="." index="6"]
