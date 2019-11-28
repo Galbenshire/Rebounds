@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/ShootBullet.wav-dacfd610d7522081c7242d26f6f1fc76.sample"
+path="res://.import/EnemyHit.wav-a49e3927f40b92444f94998a28e7f650.sample"
 
 [deps]
 
-source_file="res://entities/player/ShootBullet.wav"
-dest_files=[ "res://.import/ShootBullet.wav-dacfd610d7522081c7242d26f6f1fc76.sample" ]
+source_file="res://entities/enemies/EnemyHit.wav"
+dest_files=[ "res://.import/EnemyHit.wav-a49e3927f40b92444f94998a28e7f650.sample" ]
 
 [params]
 

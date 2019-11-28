@@ -70,6 +70,7 @@ func _take_damage() -> void:
 	else:
 		EnemySprite.modulate = Color.yellow
 		HurtTimer.start()
+		$HurtSFX.play()
 
 func _die() -> void:
 	_make_explosion()

@@ -66,6 +66,7 @@ func take_damage() -> void:
 	# Start hurt invincibility
 		BlinkAnimation.play("blink")
 		HurtTimer.start()
+		$HurtSFX.play()
 
 func die() -> void:
 	var explosion = EXPLOSION.instance()
