@@ -1,5 +1,7 @@
 extends Node
 
+onready var SoundHold : SoundHolder = $SoundHolder
+
 func _ready() -> void:
 	var index = 1
 	for level in $LevelGrid.get_children():
@@ -10,9 +12,9 @@ func _ready() -> void:
 	$LevelGrid.get_child(0).grab_focus()
 
 func change_scene(option : PackedScene) -> void:
-	$SelectSFX.play()
-	yield($SelectSFX, "finished")
+	SoundHold.play("Select")
+	yield(get_tree().create_timer(0.2), "timeout")
 	get_tree().change_scene_to(option)
 
 func _on_level_highlighted() -> void:
-	$HighlightSFX.play()
+	SoundHold.play("Highlight")

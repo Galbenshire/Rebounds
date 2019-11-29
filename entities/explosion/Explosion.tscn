@@ -1,31 +1,32 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://entities/explosion/big/Explosion1.png" type="Texture" id=1]
-[ext_resource path="res://entities/explosion/big/Explosion2.png" type="Texture" id=2]
-[ext_resource path="res://entities/explosion/big/Explosion3.png" type="Texture" id=3]
-[ext_resource path="res://entities/explosion/big/Explosion4.png" type="Texture" id=4]
-[ext_resource path="res://entities/explosion/big/Explosion5.png" type="Texture" id=5]
-[ext_resource path="res://entities/explosion/big/Explosion6.png" type="Texture" id=6]
-[ext_resource path="res://entities/explosion/big/Explosion7.png" type="Texture" id=7]
-[ext_resource path="res://entities/explosion/small/ExplosionSmall1.png" type="Texture" id=8]
-[ext_resource path="res://entities/explosion/small/ExplosionSmall2.png" type="Texture" id=9]
-[ext_resource path="res://entities/explosion/small/ExplosionSmall3.png" type="Texture" id=10]
-[ext_resource path="res://entities/explosion/small/ExplosionSmall4.png" type="Texture" id=11]
-[ext_resource path="res://entities/explosion/small/ExplosionSmall5.png" type="Texture" id=12]
+[ext_resource path="res://entities/explosion/small/ExplosionSmall1.png" type="Texture" id=1]
+[ext_resource path="res://entities/explosion/small/ExplosionSmall2.png" type="Texture" id=2]
+[ext_resource path="res://entities/explosion/small/ExplosionSmall3.png" type="Texture" id=3]
+[ext_resource path="res://entities/explosion/small/ExplosionSmall4.png" type="Texture" id=4]
+[ext_resource path="res://entities/explosion/small/ExplosionSmall5.png" type="Texture" id=5]
+[ext_resource path="res://entities/explosion/big/Explosion1.png" type="Texture" id=6]
+[ext_resource path="res://entities/explosion/big/Explosion2.png" type="Texture" id=7]
+[ext_resource path="res://entities/explosion/big/Explosion3.png" type="Texture" id=8]
+[ext_resource path="res://entities/explosion/big/Explosion4.png" type="Texture" id=9]
+[ext_resource path="res://entities/explosion/big/Explosion5.png" type="Texture" id=10]
+[ext_resource path="res://entities/explosion/big/Explosion6.png" type="Texture" id=11]
+[ext_resource path="res://entities/explosion/big/Explosion7.png" type="Texture" id=12]
 [ext_resource path="res://entities/explosion/Explosion.gd" type="Script" id=13]
-[ext_resource path="res://entities/explosion/small/BulletWallDeath.wav" type="AudioStream" id=14]
-[ext_resource path="res://entities/explosion/big/Explode.wav" type="AudioStream" id=15]
+[ext_resource path="res://scripts/SoundHolder.gd" type="Script" id=14]
+[ext_resource path="res://entities/explosion/small/BulletWallDeath.wav" type="AudioStream" id=15]
+[ext_resource path="res://entities/explosion/big/Explode.wav" type="AudioStream" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "big",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "small",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": false,
+"name": "big",
 "speed": 15.0
 } ]
 
@@ -34,11 +35,14 @@ frames = SubResource( 1 )
 animation = "small"
 script = ExtResource( 13 )
 
-[node name="SmallExplodeSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 14 )
+[node name="SoundHolder" type="Node2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="SmallExplode" type="AudioStreamPlayer2D" parent="SoundHolder"]
+stream = ExtResource( 15 )
 max_distance = 192.0
 
-[node name="BigExplodeSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 15 )
+[node name="BigExplode" type="AudioStreamPlayer2D" parent="SoundHolder"]
+stream = ExtResource( 16 )
 max_distance = 256.0
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

@@ -5,6 +5,7 @@ signal game_quit_requested()
 onready var Background : ColorRect = $Background
 onready var Options : VBoxContainer = $Background/Options
 onready var Cursor : TextureRect = $Background/Cursor
+onready var SoundHold : SoundHolder = $SoundHolder
 
 var can_pause : bool = false
 
@@ -32,7 +33,7 @@ func _position_cursor(option_position : Vector2) -> void:
 	Cursor.rect_global_position = option_position
 	Cursor.rect_global_position.x -= Cursor.rect_size.x
 	
-	$HighlightSFX.play()
+	SoundHold.play("Highlight")
 
 func _option_selected(option : Button) -> void:
 	match option.name:
@@ -43,4 +44,4 @@ func _option_selected(option : Button) -> void:
 			emit_signal("game_quit_requested")
 			print("Quit Level")
 	
-	$SelectSFX.play()
+	SoundHold.play("Select")
