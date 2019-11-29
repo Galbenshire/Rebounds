@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/Player.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/sounds/ShootBullet.wav" type="AudioStream" id=3]
+[ext_resource path="res://entities/player/sounds/PlayerHit.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -66,6 +68,12 @@ one_shot = true
 
 [node name="BlinkAnimation" type="AnimationPlayer" parent="."]
 anims/blink = SubResource( 3 )
+
+[node name="ShootSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="HurtSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_HurtTimer_timeout"]

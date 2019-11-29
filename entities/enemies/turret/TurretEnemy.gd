@@ -14,6 +14,8 @@ func shoot() -> void:
 	bullet.global_position = BulletOrigin.global_position
 	bullet.modulate = Color.red
 	get_parent().add_child(bullet)
+	
+	$ShootSFX.play()
 
 func _build_states_dictionary() -> Dictionary:
 	return {

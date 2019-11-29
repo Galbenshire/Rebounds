@@ -28,6 +28,7 @@ func _physics_process(delta : float) -> void:
 			set_angle(_velocity.bounce(collision.normal).angle())
 			$Sprite.modulate = Color.red
 			rebounded = true
+			$ReboundSFX.play()
 			if $Timer.is_stopped():
 				$Timer.start()
 

@@ -36,6 +36,7 @@ func _move_along_path(delta : float) -> void:
 	var travel_direction = (target.path[0] - target.position).normalized()
 	
 	target.position += travel_direction * travel_speed
+	target.EnemySprite.rotation = travel_direction.angle()
 	
 	if target.position.distance_to(target.path[0]) < 3:
 		target.remove_front_point()

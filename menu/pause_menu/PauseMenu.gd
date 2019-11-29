@@ -31,6 +31,8 @@ func _auto_focus_option(option : Button) -> void:
 func _position_cursor(option_position : Vector2) -> void:
 	Cursor.rect_global_position = option_position
 	Cursor.rect_global_position.x -= Cursor.rect_size.x
+	
+	$HighlightSFX.play()
 
 func _option_selected(option : Button) -> void:
 	match option.name:
@@ -40,3 +42,5 @@ func _option_selected(option : Button) -> void:
 			_pause(false)
 			emit_signal("game_quit_requested")
 			print("Quit Level")
+	
+	$SelectSFX.play()

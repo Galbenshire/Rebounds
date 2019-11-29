@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/KeyCollect.wav-2c425c3e9a0acec15dd6c2f0f9c34b68.sample"
+
+[deps]
+
+source_file="res://entities/key/KeyCollect.wav"
+dest_files=[ "res://.import/KeyCollect.wav-2c425c3e9a0acec15dd6c2f0f9c34b68.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

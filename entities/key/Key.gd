@@ -23,8 +23,15 @@ func set_barrier_path(path : NodePath) -> void:
 		_barrier = null
 		printerr("ERROR! Only use TileMaps for 'Barrier Path' for 'Key'")
 
+func _remove_self() -> void:
+	hide()
+	$Collision.set_deferred("disabled", true)
+	$CollectSFX.play()
+	yield($CollectSFX, "finished")
+	queue_free()
+
 func _on_body_entered(body : PhysicsBody2D) -> void:
 	if !Engine.editor_hint:
-		queue_free()
+		_remove_self()
 		if _barrier:
 			_barrier.explode()

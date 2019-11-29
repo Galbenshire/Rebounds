@@ -66,6 +66,7 @@ func take_damage() -> void:
 	# Start hurt invincibility
 		BlinkAnimation.play("blink")
 		HurtTimer.start()
+		$HurtSFX.play()
 
 func die() -> void:
 	var explosion = EXPLOSION.instance()
@@ -118,6 +119,7 @@ func _player_shoot() -> void:
 	get_parent().add_child(bullet)
 	
 	PlayerData.bullets_shot += 1
+	$ShootSFX.play()
 
 func _on_Hitbox_body_entered(body : PhysicsBody2D) -> void:
 	if body.is_in_group("player_projectile"):

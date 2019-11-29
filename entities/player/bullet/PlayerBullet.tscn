@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://entities/player/bullet/PlayerBullet.gd" type="Script" id=1]
 [ext_resource path="res://entities/_shared/Bullet.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/bullet/BulletRebound.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 4.0
@@ -28,5 +29,9 @@ rect = Rect2( -100, -100, 200, 200 )
 process_mode = 0
 wait_time = 0.15
 one_shot = true
+
+[node name="ReboundSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+max_distance = 192.0
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
