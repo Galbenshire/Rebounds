@@ -11,3 +11,6 @@ Don't go trigger happy though; your rebounded bullets will hurt you too.
 ![Example Image](.readme_assets/ExampleScreenshot.png)
 
 You can play the game either by going to the *Release* page, or through the browser [here](https://galbenshire.itch.io/rebounds).
+
+## License
+This project is under the MIT License

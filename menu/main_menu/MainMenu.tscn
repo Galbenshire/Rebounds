@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://gui/MainTheme.tres" type="Theme" id=1]
 [ext_resource path="res://menu/main_menu/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://menu/main_menu/level_selection/LevelSelection.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/level_test_2/TestLevel2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://levels/level_test_3/TestLevel3.tscn" type="PackedScene" id=5]
-[ext_resource path="res://levels/test_level_4/TestLevel4.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/SoundHolder.gd" type="Script" id=7]
-[ext_resource path="res://menu/_shared/MenuOptionHighlighted.wav" type="AudioStream" id=8]
-[ext_resource path="res://menu/_shared/MenuOptionSelected.wav" type="AudioStream" id=9]
+[ext_resource path="res://levels/test_level_5/TestLevel5.tscn" type="PackedScene" id=6]
+[ext_resource path="res://levels/test_level_4/TestLevel4.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/SoundHolder.gd" type="Script" id=8]
+[ext_resource path="res://menu/_shared/MenuOptionHighlighted.wav" type="AudioStream" id=9]
+[ext_resource path="res://menu/_shared/MenuOptionSelected.wav" type="AudioStream" id=10]
 
 [node name="MainMenu" type="ColorRect"]
 anchor_right = 1.0
@@ -43,30 +44,40 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -80.0
-margin_top = -24.0
+margin_top = -4.0
 margin_right = 80.0
-margin_bottom = 88.0
+margin_bottom = 60.0
 columns = 4
 
 [node name="LevelSelection" parent="LevelGrid" instance=ExtResource( 3 )]
+margin_right = 37.0
+size_flags_horizontal = 3
 level_go_to = ExtResource( 4 )
 
 [node name="LevelSelection3" parent="LevelGrid" instance=ExtResource( 3 )]
-margin_left = 36.0
-margin_right = 68.0
+margin_left = 41.0
+margin_right = 78.0
+size_flags_horizontal = 3
 level_go_to = ExtResource( 5 )
 
-[node name="LevelSelection4" parent="LevelGrid" instance=ExtResource( 3 )]
-margin_left = 72.0
-margin_right = 104.0
+[node name="LevelSelection5" parent="LevelGrid" instance=ExtResource( 3 )]
+margin_left = 82.0
+margin_right = 119.0
+size_flags_horizontal = 3
 level_go_to = ExtResource( 6 )
+
+[node name="LevelSelection4" parent="LevelGrid" instance=ExtResource( 3 )]
+margin_left = 123.0
+margin_right = 160.0
+size_flags_horizontal = 3
+level_go_to = ExtResource( 7 )
 
 [node name="SoundHolder" type="Node" parent="."]
 editor/display_folded = true
-script = ExtResource( 7 )
+script = ExtResource( 8 )
 
 [node name="Highlight" type="AudioStreamPlayer" parent="SoundHolder"]
-stream = ExtResource( 8 )
+stream = ExtResource( 9 )
 
 [node name="Select" type="AudioStreamPlayer" parent="SoundHolder"]
-stream = ExtResource( 9 )
+stream = ExtResource( 10 )
