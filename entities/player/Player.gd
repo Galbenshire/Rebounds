@@ -14,6 +14,7 @@ onready var BulletOrigin : Position2D = $Sprite/BulletOrigin
 onready var Hitbox : Area2D = $Hitbox/Collision
 onready var BlinkAnimation : AnimationPlayer = $BlinkAnimation
 onready var HurtTimer : Timer = $HurtTimer
+onready var SoundHold : SoundHolder = $SoundHolder
 
 const PlayerData := preload("res://scriptable_objects/PlayerData.tres")
 
@@ -66,7 +67,7 @@ func take_damage() -> void:
 	# Start hurt invincibility
 		BlinkAnimation.play("blink")
 		HurtTimer.start()
-		$HurtSFX.play()
+		SoundHold.play("Hurt")
 
 func die() -> void:
 	var explosion = EXPLOSION.instance()
@@ -119,7 +120,7 @@ func _player_shoot() -> void:
 	get_parent().add_child(bullet)
 	
 	PlayerData.bullets_shot += 1
-	$ShootSFX.play()
+	SoundHold.play("Shoot")
 
 func _on_Hitbox_body_entered(body : PhysicsBody2D) -> void:
 	if body.is_in_group("player_projectile"):

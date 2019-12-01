@@ -1,13 +1,12 @@
 extends AnimatedSprite
 
+onready var SoundHold : SoundHolder = $SoundHolder
+
 var is_small : bool = false
 
 func _ready() -> void:
 	play("small" if is_small else "big")
-	if is_small:
-		$SmallExplodeSFX.play()
-	else:
-		$BigExplodeSFX.play()
+	SoundHold.play("SmallExplode" if is_small else "BigExplode")
 
 func _on_animation_finished() -> void:
 	queue_free()
